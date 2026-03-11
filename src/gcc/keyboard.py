@@ -40,7 +40,6 @@ class Keyboard:
         Keyboard._iKeyboard.press_keys(keys, dbus.Byte(modifier), dbus.Int32(opt))
 
     def press_key(
-        self,
         key: str,
         modifier: Modifier = Modifier.NONE,
         opt: KeyboardOption = KeyboardOption.TAP,
@@ -58,7 +57,6 @@ class Keyboard:
         Keyboard._iKeyboard.press_keys()
 
     def send_string(
-        self,
         string: str,
         modifier: Modifier = Modifier.NONE,
         opt: KeyboardOption = KeyboardOption.TAP,
