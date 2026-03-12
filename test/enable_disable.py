@@ -1,4 +1,5 @@
 from gcc import GCC, Keyboard
+from gcc.keyboard import Modifier
 
 
 if __name__ == "__main__":
@@ -42,5 +43,5 @@ if __name__ == "__main__":
     Keyboard.press_key('l')
 
     GCC.EnalbeAllDevicesNotify()
-    Keyboard.send_string("testdone")
+    Keyboard.send_string("test done", Modifier.LSHIFT)
     
