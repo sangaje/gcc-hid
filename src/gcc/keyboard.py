@@ -66,4 +66,4 @@ class Keyboard:
         check_type(string, str)
         check_type(modifier, Modifier)
         check_type(opt, KeyboardOption)
-        Keyboard._iKeyboard.press_keys(string, dbus.Byte(modifier), dbus.Int32(opt))
+        Keyboard._iKeyboard.send_string(string, dbus.Byte(modifier))

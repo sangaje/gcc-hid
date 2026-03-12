@@ -43,5 +43,6 @@ if __name__ == "__main__":
     Keyboard.press_key('l')
 
     GCC.EnalbeAllDevicesNotify()
+    print("Press String")
     Keyboard.send_string("test done", Modifier.LSHIFT)
     

@@ -29,7 +29,7 @@ class KeyboardApiService(dbus.service.Object):
     def releas_all(self):
         self._keyboard_input.send_keys(0x0, [])
 
-    @dbus.service.method(dbus_interface=KEYBOARD_API_NAME, in_signature="syi")
-    def send_string(self, string, modifier: dbus.Byte, opt: dbus.Int32):
-        for c in string:
-            self.press_key(modifier, c)
+    @dbus.service.method(dbus_interface=KEYBOARD_API_NAME, in_signature="sy")
+    def send_string(self, string, modifier: dbus.Byte):
+        for c in list(string):
+            self.press_key(c, modifier, 0x1)
