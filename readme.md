@@ -17,6 +17,24 @@ sudo systemctl restart dbus
 sudo systemctl restart bluetooth
 ```
 
+- (Optional) Replace BuleZ for multi HID client control
+
+```bash
+git clone https://github.com/sangaje/bluez && cd ./bluez
+
+
+sudo apt-get update
+sudo apt-get install -y build-dep bluez build-essential autoconf automake libtool pkg-config
+
+./bootstrap
+./configure --prefix=/usr --mandir=/usr/share/man \
+				--sysconfdir=/etc --localstatedir=/var
+
+make -j"$(nproc)"
+sudo make install
+sudo cp ./com.gcc.conf /etc/dbus-1/system.d/
+```
+
 
 
 Change  `/lib/systemd/system/bluetooth.service`
@@ -27,6 +45,17 @@ to
 ```bash
 ExecStart=/usr/libexec/bluetooth/bluetoothd -P input
 ```
+
+Change  `/etc/bluetooth/main.conf`
+```bash
+#ControllerMode = dual
+```
+to
+```bash
+ControllerMode = le
+```
+
+
 
 reboot.
 ```bash

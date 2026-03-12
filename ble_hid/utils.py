@@ -36,3 +36,25 @@ def set_adapter_property(bus: dbus.Bus, adapter_path: str, prop: str, value: Any
     adapter_obj = bus.get_object(BLUEZ_SERVICE_NAME, adapter_path)
     props = dbus.Interface(adapter_obj, DBUS_PROP_IFACE)
     props.Set(ADAPTER_IFACE, prop, value)
+
+
+def get_connected_devices(bus: dbus.Bus, adapter="/org/bluez/hci0"):
+    om = dbus.Interface(
+        bus.get_object(BLUEZ, "/"),
+        "org.freedesktop.DBus.ObjectManager",
+    )
+    objs = om.GetManagedObjects()
+
+    result = []
+    prefix = adapter + "/dev_"
+
+    for path, ifaces in objs.items():
+        dev = ifaces.get("org.bluez.Device1")
+        if not dev:
+            continue
+        if not str(path).startswith(prefix):
+            continue
+        if bool(dev.get("Connected", False)):
+            result.append(str(path))
+
+    return result

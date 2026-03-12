@@ -10,6 +10,7 @@ DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
 
 ADAPTER_IFACE = "org.bluez.Adapter1"
 AGENT_MGR_IFACE = "org.bluez.AgentManager1"
+DEVICE_IFACE = "org.bluez.Device1"
 GATT_MGR_IFACE = "org.bluez.GattManager1"
 LE_ADVERTISING_MGR_IFACE = "org.bluez.LEAdvertisingManager1"
 
