@@ -16,6 +16,7 @@ LE_ADVERTISING_MGR_IFACE = "org.bluez.LEAdvertisingManager1"
 
 GATT_SERVICE_IFACE = "org.bluez.GattService1"
 GATT_CHRC_IFACE = "org.bluez.GattCharacteristic1"
+NOTIFY_CTRL_IFACE = "org.bluez.GattNotifyControl1"
 GATT_DESC_IFACE = "org.bluez.GattDescriptor1"
 LE_ADVERTISEMENT_IFACE = "org.bluez.LEAdvertisement1"
 AGENT_IFACE = "org.bluez.Agent1"
