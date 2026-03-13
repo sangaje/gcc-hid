@@ -67,3 +67,7 @@ class Keyboard:
         check_type(modifier, Modifier)
         check_type(opt, KeyboardOption)
         Keyboard._iKeyboard.send_string(string, dbus.Byte(modifier))
+
+    # TODO It dosen't work
+    # def send_raw_bytes(self, arr):
+    #     Keyboard._iKeyboard.send_keys(0x0, arr)

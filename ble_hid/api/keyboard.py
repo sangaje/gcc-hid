@@ -16,14 +16,14 @@ class KeyboardApiService(dbus.service.Object):
         hid_keys = [HID_MAP.get(key.lower(), 0) for key in keys]
         self._keyboard_input.send_keys(modifier, hid_keys)
         if opt == 0x1:
-            self._keyboard_input.send_keys(modifier, [])
+            self.releas_all()
 
     @dbus.service.method(dbus_interface=KEYBOARD_API_NAME, in_signature="syi")
     def press_key(self, key: str, modifier: dbus.Byte, opt: dbus.Int32):
         hid_keys = [HID_MAP.get(key.lower(), 0)]
         self._keyboard_input.send_keys(modifier, hid_keys)
         if opt == 0x1:
-            self._keyboard_input.send_keys(modifier, [])
+            self.releas_all()
 
     @dbus.service.method(dbus_interface=KEYBOARD_API_NAME)
     def releas_all(self):
@@ -33,3 +33,12 @@ class KeyboardApiService(dbus.service.Object):
     def send_string(self, string, modifier: dbus.Byte):
         for c in list(string):
             self.press_key(c, modifier, 0x1)
+
+    # TODO It dosen't work :(
+    # @dbus.service.method(dbus_interface=KEYBOARD_API_NAME, in_signature="ay")
+    # def send_raw_bytes(self, arr):
+    #     self._keyboard_input.send_keys(0x0, arr)
+    #     self.releas_all()
+
+
+
