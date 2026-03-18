@@ -6,7 +6,7 @@ from ..hid.services import (
     KeyboardInputReportCharacteristic,
     MouseInputReportCharacteristic,
 )
-from .keymap import HID_MAP
+from .keymap import HID_MAP, HDI_MOD_KEYS
 
 
 class KeyboardApiService(dbus.service.Object):
@@ -42,7 +42,8 @@ class KeyboardApiService(dbus.service.Object):
             self.press_key(c, modifier, 0x1)
 
     # TODO It dosen't work :(
-    # @dbus.service.method(dbus_interface=KEYBOARD_API_NAME, in_signature="ay")
-    # def send_raw_bytes(self, arr):
-    #     self._keyboard_input.send_keys(0x0, arr)
-    #     self.releas_all()
+    @dbus.service.method(dbus_interface=KEYBOARD_API_NAME, in_signature="s")
+    def send_cmd(self, arr):
+        arr = [HID_MAP.get(c.lower(), 0) for c in arr]
+        self._keyboard_input.send_keys(0x02, arr)
+        self.releas_all()
