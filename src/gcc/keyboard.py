@@ -39,6 +39,7 @@ class Keyboard:
         check_type(opt, KeyboardOption)
         Keyboard._iKeyboard.press_keys(keys, dbus.Byte(modifier), dbus.Int32(opt))
 
+    @staticmethod
     def press_key(
         key: str,
         modifier: Modifier = Modifier.NONE,
@@ -51,11 +52,13 @@ class Keyboard:
         check_type(opt, KeyboardOption)
         Keyboard._iKeyboard.press_keys(key, dbus.Byte(modifier), dbus.Int32(opt))
 
-    def releas_all(self):
+    @staticmethod
+    def releas_all():
         if not Keyboard._iKeyboard:
             raise NoDbusConnectionError()
         Keyboard._iKeyboard.press_keys()
 
+    @staticmethod
     def send_string(
         string: str,
         modifier: Modifier = Modifier.NONE,

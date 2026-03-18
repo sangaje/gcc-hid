@@ -7,8 +7,11 @@ from .constants import (
     KEYBOARD_OBJECT_PATH,
     API_INTERFACE,
     API_PATH,
+    MOUSE_OBJECT_PATH,
+    MOUSE_INTERFACE
 )
 from .keyboard import Keyboard
+from .mouse import Mouse
 
 
 _is_inited = False
@@ -27,10 +30,16 @@ class GCC:
         iKeyboard = dbus.Interface(
             bus.get_object(BUS_NAME, KEYBOARD_OBJECT_PATH), KEYBOARD_INTERFACE
         )
+        iMouse = dbus.Interface(
+            bus.get_object(BUS_NAME, MOUSE_OBJECT_PATH),
+            MOUSE_INTERFACE
+        )
+
 
         GCC._iGcc = dbus.Interface(bus.get_object(BUS_NAME, API_PATH), API_INTERFACE)
 
         Keyboard._iKeyboard = iKeyboard
+        Mouse._imouse = iMouse
         _is_inited = True
 
     @staticmethod

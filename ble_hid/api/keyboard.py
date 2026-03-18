@@ -2,12 +2,19 @@ import dbus
 import dbus.service
 
 from ..constants import KEYBOARD_API_PATH, KEYBOARD_API_NAME
-from ..hid.services import KeyboardInputReportCharacteristic
+from ..hid.services import (
+    KeyboardInputReportCharacteristic,
+    MouseInputReportCharacteristic,
+)
 from .keymap import HID_MAP
 
 
 class KeyboardApiService(dbus.service.Object):
-    def __init__(self, bus, keyboard_input: KeyboardInputReportCharacteristic):
+    def __init__(
+        self,
+        bus,
+        keyboard_input: KeyboardInputReportCharacteristic,
+    ):
         self._keyboard_input = keyboard_input
         super().__init__(bus, KEYBOARD_API_PATH)
 
@@ -39,6 +46,3 @@ class KeyboardApiService(dbus.service.Object):
     # def send_raw_bytes(self, arr):
     #     self._keyboard_input.send_keys(0x0, arr)
     #     self.releas_all()
-
-
-

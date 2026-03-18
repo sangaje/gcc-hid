@@ -4,6 +4,7 @@ import dbus.bus
 import dbus.service
 
 from .keyboard import KeyboardApiService
+from .mouse import MouseInput
 from ..constants import (
     API_PATH,
     BUS_NAME,
@@ -24,6 +25,7 @@ class ApiService(dbus.service.Object):
         bus_name = dbus.service.BusName(BUS_NAME, bus=bus)
         self.load_devices(self.bus)
         self.keyboard_api = KeyboardApiService(bus_name, hid_service.keyboard_input)
+        self.mouse_api = MouseInput(bus_name, hid_service.mouse_input)
         super().__init__(bus_name, API_PATH)
 
     # TODO Optimization this

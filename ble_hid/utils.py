@@ -40,7 +40,7 @@ def set_adapter_property(bus: dbus.Bus, adapter_path: str, prop: str, value: Any
 
 def get_connected_devices(bus: dbus.Bus, adapter="/org/bluez/hci0"):
     om = dbus.Interface(
-        bus.get_object(BLUEZ, "/"),
+        bus.get_object(BLUEZ_SERVICE_NAME, "/"),
         "org.freedesktop.DBus.ObjectManager",
     )
     objs = om.GetManagedObjects()
