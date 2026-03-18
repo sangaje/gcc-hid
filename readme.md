@@ -22,6 +22,12 @@ sudo systemctl restart bluetooth
 ```bash
 git clone https://github.com/sangaje/bluez && cd ./bluez
 
+set -e
+sudo sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/debian.sources /etc/apt/sources.list.d/raspi.sources
+grep -R '^Types:' /etc/apt/sources.list.d/*.sources
+sudo apt-get update
+sudo apt-get -y build-dep bluez
+sudo apt-get -y install build-essential autoconf automake libtool pkg-config
 
 sudo apt-get update
 sudo apt-get install -y build-dep bluez build-essential autoconf automake libtool pkg-config

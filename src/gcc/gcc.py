@@ -43,7 +43,7 @@ class GCC:
         _is_inited = True
 
     @staticmethod
-    def GetAllConnectedDevices():
+    def GetAllConnectedDevices() -> list[str]:
         return GCC._iGcc.GetAllConnectedDevices()
 
     @staticmethod
@@ -55,11 +55,11 @@ class GCC:
         return GCC._iGcc.DisalbeAllDevicesNotify()
 
     @staticmethod
-    def EnalbeDeviceNotify(name):
+    def EnalbeDeviceNotify(name: str):
         return GCC._iGcc.EnalbeDeviceNotify(dbus.String(name))
 
     @staticmethod
-    def DisalbeDeviceNotify(name):
+    def DisalbeDeviceNotify(name: str):
         return GCC._iGcc.DisalbeDeviceNotify(dbus.String(name))
 
     @staticmethod
